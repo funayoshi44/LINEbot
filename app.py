@@ -1,8 +1,8 @@
-import inspect
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 import random
+import inspect
 
 app = Flask(__name__)
 
@@ -49,9 +49,9 @@ def handle_message(event):
         current_step = 1
         send_step_message(event)
     else:
-        handle_step(user_message, event, inspect.signature(handle_step).parameters)
+        handle_step(user_message, event)
 
-def handle_step(user_message, event, params):
+def handle_step(user_message, event):
     global current_step
     if current_step == 0:
         return
